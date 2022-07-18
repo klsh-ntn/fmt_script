@@ -21,7 +21,10 @@ def read_judges_data(judges_datafile):
 		if skill == 0:
 			zonders += 1
 		physician = (int(judge_line_split[3]) == 1)
-		senior = (int(judge_line_split[4]) == 1)
+		if len(judge_line_split) > 4:
+			senior = (int(judge_line_split[4]) == 1)
+		else:
+			senior = False
 
 		forbidden_teams = []
 		for index in range(5, len(judge_line_split)):
@@ -54,11 +57,11 @@ def get_all_matches(matches_file):
 def no_conflicts(judge, match_pair):
 	return match_pair[0] not in judge[5] and match_pair[1] not in judge[5]
 
-judges = read_judges_data(open('judges.dat', 'r'))
-min_skills_per_matches = read_min_skills(open('min_skills.dat', 'r'))
-rooms_names_list = get_all_rooms(open('rooms.dat', 'r'))
+judges = read_judges_data(open('judges.dat', 'r', encoding='utf-8'))
+min_skills_per_matches = read_min_skills(open('min_skills.dat', 'r', encoding='utf-8'))
+rooms_names_list = get_all_rooms(open('rooms.dat', 'r', encoding='utf-8'))
 tour_idx = int(sys.argv[1])
-match_pairs_list = get_all_matches(open('matches_' + sys.argv[1] + '.dat', 'r'))
+match_pairs_list = get_all_matches(open('matches_' + sys.argv[1] + '.dat', 'r', encoding='utf-8'))
 
 judges_min = len(judges) / number_of_tables
 
@@ -79,7 +82,7 @@ while not found:
 				success = True
 				tables_judges[table_id].append(judges_temp[senior_id])
 				del judges_temp[senior_id]
-	print 'seniors set'
+	print('seniors set')
 	''' now add physicist to all the tables '''
 	for table_id in range(number_of_tables):
 		success = tables_judges[table_id][0][3] # if the senior judge is a physician, we are done
@@ -89,7 +92,7 @@ while not found:
 				success = True
 				tables_judges[table_id].append(judges_temp[physician_id])
 				del judges_temp[physician_id]
-	print 'physicists set'
+	print('physicists set')
 	''' now add zonder to first nZ tables (zonder has zero skill)'''
 	for table_id in range(zonders):
 		success = False
@@ -99,15 +102,15 @@ while not found:
 				success = True
 				tables_judges[table_id].append(judges_temp[zonder_id])
 				del judges_temp[zonder_id]
-	print 'zonders set'
+	print('zonders set')
 	''' now distribute the other judges in the way that there are from 3 to 4 judges per table (4 on top, 3 on bottom) '''
 	for table_id in range(number_of_tables):
 		more_needed = judges_min - len(tables_judges[table_id])
 		
-		if table_id in range(tables_with_max_judges):
+		if table_id in range(int(tables_with_max_judges)):
 			more_needed += 1
 
-		for new_judge in range(more_needed):	
+		for new_judge in range(int(more_needed)):	
 			success = False
 			while not success:
 				new_id = random.randint(0, len(judges_temp) - 1)
@@ -123,11 +126,11 @@ while not found:
 		for judge in tables_judges[table_id]:
 			skill += judge[2]
 		if skill < min_skills_per_matches[table_id]:
-			print 'skill fail'
+			print('skill fail')
 			found = False
 
 ''' write judges, pairs and everything required for the protocols and notification to file '''
-jf = open('judges_file_' + str(tour_idx) + '.dat', 'w')
+jf = open('judges_file_' + str(tour_idx) + '.dat', 'w', encoding='utf-8')
 
 for table_id in range(number_of_tables):
 	jf.write('table ' + str(table_id) + '\n')

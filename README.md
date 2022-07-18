@@ -22,15 +22,15 @@ The repository contains scripts for KLSH PMT
 
 4. Теперь запускаем
 ```bash
-python2 main_gen_scripy.py N
+python main_gen_scripy.py N
 ```
 где N — номер встречи. этот скрипт создаст файл с судьями для каждого стола. Скрипт рандомно выбирает судей так, чтобы 1) был физик, 2) был главный, 3) суммарный скилл был больше минимального необходимого для данного стола (они прописаны в min_skills.dat). В сгенерированном файле с судьями можно их попереставлять, как хочется. То что генерирует скрипт это некая затравка
 
 5.  Затем запускаем три скрипта
 ```bash
-python2 protocols_gen.py N
-python2 notifications_gen.py N
-python2 school_notifications_gen.py N
+python protocols_gen.py N
+python notifications_gen.py N
+python school_notifications_gen.py N
 ```
 
 они генерят протоколы, объявление в штаб и объявление для школьников на столовую

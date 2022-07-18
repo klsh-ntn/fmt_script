@@ -66,8 +66,8 @@ def print_protocol(table_id, team_one, team_two, room, judges, pf):
 	pf.write('{\\bf Подписи судей: }................................................................................................................')
 	pf.write('\\newpage\n')	
 tour_idx = int(sys.argv[1])
-jf = open('judges_file_' + sys.argv[1] + '.dat', 'r')
-pf = open('protocol_' + str(tour_idx) + '.tex', 'w')
+jf = open('judges_file_' + sys.argv[1] + '.dat', 'r', encoding='utf-8')
+pf = open('protocol_' + str(tour_idx) + '.tex', 'w', encoding='utf-8')
 table_id = None
 team_one = None
 team_two = None
