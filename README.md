@@ -1,7 +1,4 @@
-# klsh_pmt
-
-The repository contains scripts for KLSH PMT
-
+# klsh_fmt
 
 1. В файле `judges.dat` нужно закомментить/удалить неприехавших людей,
 добавить приехавших и прописать им следующие вещи: скилл (первая колонка),
