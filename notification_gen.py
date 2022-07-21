@@ -73,4 +73,4 @@ nf.write('\\end{center}\n')
 nf.write('\\end{document}\n')
 
 ''' open .tex file in texmaker '''
-subprocess.Popen(['texmaker', 'notification_' + str(tour_idx) + '.tex'], stdout=subprocess.PIPE)
+# subprocess.Popen(['texmaker', 'notification_' + str(tour_idx) + '.tex'], stdout=subprocess.PIPE)

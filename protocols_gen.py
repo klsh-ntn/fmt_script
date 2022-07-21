@@ -109,4 +109,4 @@ for line in jf:
 print_protocol(table_id, team_one, team_two, room, judges, pf)
 pf.write('\\end{document}\n')
 
-subprocess.Popen(['texmaker', 'protocol_' + str(tour_idx) + '.tex'], stdout=subprocess.PIPE)
+# subprocess.Popen(['texmaker', 'protocol_' + str(tour_idx) + '.tex'], stdout=subprocess.PIPE)
